@@ -1,0 +1,101 @@
+# Smithery Registry — HiveInsuranceBroker MCP Server
+# https://smithery.ai
+
+startCommand:
+  type: http
+  configSchema:
+    type: object
+    properties: {}
+    required: []
+  url: https://hivemorph.onrender.com/mcp/hive-mcp-insurance-broker
+
+name: hive-mcp-insurance-broker
+displayName: HiveInsuranceBroker — Broker-only insurance discovery surface for on-chain risk products
+version: "1.0.0"
+description: >
+  MCP server for the Hive Insurance Broker. Surfaces real coverage listings from licensed third-party underwriters (Nexus Mutual, Sherlock, Risk Harbor, InsurAce) and routes quote requests to the underwriters' own quote endpoints. Hive does NOT underwrite, hold premium, settle claims, or take custody. Real rails. No mock data. Listings sourced from Nexus Mutual public API (api.nexusmutual.io/v2) and DefiLlama protocol summaries.
+
+  IMPORTANT: Hive is a broker-only directory. Hive does not underwrite, hold premium, settle claims, or take custody. Coverage is provided by third-party licensed protocols. Verify licensing and policy terms with the underwriter before purchase.
+
+author:
+  name: Steve Rotzin
+  email: steve@thehiveryiq.com
+  url: https://www.thehiveryiq.com
+
+license: MIT
+homepage: https://github.com/srotzin/hive-mcp-insurance-broker
+repository:
+  type: git
+  url: https://github.com/srotzin/hive-mcp-insurance-broker
+
+transport: streamable-http
+endpoint: https://hivemorph.onrender.com/mcp
+protocol: "2024-11-05"
+brand_color: "#C08D23"
+
+categories:
+  - finance
+  - insurance
+  - broker
+  - discovery
+  - web3
+  - defi
+  - agent-to-agent
+
+tags:
+  - mcp
+  - hive
+  - insurance
+  - broker
+  - nexus-mutual
+  - sherlock
+  - risk-harbor
+  - insurace
+  - ai-agents
+  - a2a
+  - defi
+  - coverage
+
+tools:
+- name: insurance_products
+  description: >
+    List all available coverage products across providers (Nexus Mutual, Sherlock, Risk Harbor, InsurAce). Returns provider, type, capacity, and current cost-of-coverage where the upstream exposes it. Real third-party listings — Hive is broker-only and does not underwrite.
+  inputs:
+    []
+        - name: insurance_quote
+          description: >
+            Route a quote request to one or all underwriters. Hive forwards the request to the underwriter's own quote endpoint and returns the response verbatim. Hive does NOT bind coverage, accept premium, or take custody.
+          inputs:
+            - name: protocol
+  type: string
+  required: true
+  description: "Protocol/product identifier (e.g. '2' for Nexus Mutual Aave v2, or the productId from /products)"
+- name: cover_amount_usd
+  type: number
+  required: true
+  description: "Notional coverage in USD"
+- name: duration_days
+  type: number
+  required: true
+  description: "Coverage duration in days (1–365)"
+- name: provider
+  type: string
+  required: false
+  description: "Provider key. If omitted, quote routes to all four providers. One of: nexus_mutual, sherlock, risk_harbor, insurace"
+- name: insurance_today
+  description: >
+    24-hour rollup: total listing count + top providers by capacity. Returns request count and quote count for the rolling window.
+  inputs:
+    []
+
+runtime:
+  type: node
+  version: ">=18"
+  command: node server.js
+  env:
+    - name: PORT
+      default: "3000"
+      required: false
+    - name: HIVE_BASE
+      default: "https://hivemorph.onrender.com"
+      required: false

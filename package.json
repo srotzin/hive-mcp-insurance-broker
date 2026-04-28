@@ -1,0 +1,41 @@
+{
+  "name": "hive-mcp-insurance-broker",
+  "version": "1.0.0",
+  "description": "MCP server for the Hive Insurance Broker. Surfaces real coverage listings from licensed third-party underwriters (Nexus Mutual, Sherlock, Risk Harbor, InsurAce) and routes quote requests to the underw",
+  "type": "module",
+  "main": "server.js",
+  "bin": {
+    "hive-mcp-insurance-broker": "./server.js"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "mcp",
+    "hive",
+    "insurance",
+    "broker",
+    "nexus-mutual",
+    "sherlock",
+    "risk-harbor",
+    "insurace",
+    "ai-agents",
+    "a2a",
+    "defi",
+    "coverage"
+  ],
+  "author": "Steve Rotzin <steve@thehiveryiq.com> (https://www.thehiveryiq.com)",
+  "license": "MIT",
+  "homepage": "https://github.com/srotzin/hive-mcp-insurance-broker",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/srotzin/hive-mcp-insurance-broker"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
