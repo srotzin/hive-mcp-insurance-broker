@@ -1,5 +1,7 @@
 # HiveInsuranceBroker
 
+[![srotzin/hive-mcp-insurance-broker MCP server](https://glama.ai/mcp/servers/srotzin/hive-mcp-insurance-broker/badges/score.svg)](https://glama.ai/mcp/servers/srotzin/hive-mcp-insurance-broker)
+
 **Broker-only insurance discovery surface for on-chain risk products**
 
 MCP server for the Hive Insurance Broker. Surfaces real coverage listings from licensed third-party underwriters (Nexus Mutual, Sherlock, Risk Harbor, InsurAce) and routes quote requests to the underwriters' own quote endpoints. Hive does NOT underwrite, hold premium, settle claims, or take custody. Real rails. No mock data. Listings sourced from Nexus Mutual public API (api.nexusmutual.io/v2) and DefiLlama protocol summaries.
